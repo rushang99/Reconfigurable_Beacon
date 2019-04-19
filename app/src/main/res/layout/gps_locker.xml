@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/a1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/gps_button1"
+            android:layout_width="296dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/oval_button"
+            android:gravity="center"
+            android:text="Find Location" />
+
+        <Button
+            android:id="@+id/maps_button"
+            android:layout_width="296dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/oval_button"
+            android:gravity="center"
+            android:text="Open location in maps" />
+
+        <ListView
+            android:id="@+id/gps_list"
+            android:layout_width="match_parent"
+            android:layout_height="133dp"
+            android:layout_marginTop="20dp" />
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/Beacon_name"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="5dp"
+            android:hint="Enter Beacon Name" />
+
+    </android.support.design.widget.TextInputLayout>
+
+</LinearLayout>

@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "534343072377",
+    "firebase_url": "https://driverapp-1554208294599.firebaseio.com",
+    "project_id": "driverapp-1554208294599",
+    "storage_bucket": "driverapp-1554208294599.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:534343072377:android:b162171b63b96215",
+        "android_client_info": {
+          "package_name": "com.example.rohit.driverapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2WVC1t2NK1iTlwnHx20bCfap_iR1aync"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "534343072377-vfojh67297ab8mnej136b8ct97ni800h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

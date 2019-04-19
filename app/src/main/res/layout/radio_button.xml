@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+<RadioGroup
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RadioButton
+        android:id="@+id/rd_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100 ms" />
+
+    <RadioButton
+        android:id="@+id/rd_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rd_1"
+        android:text="152 ms" />
+
+    <RadioButton
+        android:id="@+id/rd_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rd_2"
+        android:text="211 ms" />
+
+    <RadioButton
+        android:id="@+id/rd_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rd_3"
+        android:text="318 ms" />
+
+    <RadioButton
+        android:id="@+id/rd_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rd_4"
+        android:text="417 ms" />
+
+    <RadioButton
+        android:id="@+id/rd_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rd_5"
+        android:text="546 ms" />
+
+
+    <RadioButton
+        android:id="@+id/rd_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rd_6"
+        android:text="760 ms" />
+
+
+    <RadioButton
+        android:id="@+id/rd_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rd_7"
+        android:text="852 ms" />
+
+    <RadioButton
+        android:id="@+id/rd_9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rd_8"
+        android:text="1.02 s" />
+
+
+    <RadioButton
+        android:id="@+id/rd_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rd_9"
+        android:text="1.28 s" />
+
+
+    <RadioButton
+        android:id="@+id/rd_11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rd_10"
+        android:text="2 s" />
+
+    <RadioButton
+        android:id="@+id/rd_12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rd_11"
+        android:text="3 s" />
+
+    <RadioButton
+        android:id="@+id/rd_13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rd_12"
+        android:text="4 s" />
+
+    <RadioButton
+        android:id="@+id/rd_14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rd_13"
+        android:text="5 s" />
+
+    <RadioButton
+        android:id="@+id/rd_15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rd_14"
+        android:text="6 s" />
+
+    <RadioButton
+        android:id="@+id/rd_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rd_15"
+        android:text="7 s" />
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rd_16"
+        android:layout_centerInParent="true"
+        android:text="OK"
+        android:onClick=""/>
+</RadioGroup>
+
+
+</RelativeLayout>

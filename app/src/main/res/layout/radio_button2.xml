@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/radio_group">
+
+    <RadioGroup
+
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/rd_101"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Get Beacon Information"
+            android:textSize="15sp" />
+
+        <RadioButton
+            android:id="@+id/rd_102"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rd_101"
+            android:padding="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Configure Beacon"
+            android:textAlignment="viewStart"
+            android:textSize="15sp" />
+
+
+        <Button
+            android:id="@+id/button3"
+            android:background="@drawable/oval_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rd_102"
+            android:layout_centerInParent="true"
+            android:padding="10dp"
+            android:text="OK"
+            android:textSize="15sp" />
+    </RadioGroup>
+
+    </android.support.constraint.ConstraintLayout>
+
