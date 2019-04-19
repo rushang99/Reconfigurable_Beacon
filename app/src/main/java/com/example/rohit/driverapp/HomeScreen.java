@@ -32,6 +32,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.neovisionaries.bluetooth.ble.advertising.ADPayloadParser;
@@ -124,6 +125,7 @@ public class HomeScreen extends AppCompatActivity {
 
                 final BluetoothDevice device = map.get(devices_list.get(position).name);
                 BT_devices.clear();
+                devices_list.clear();
                 adapter.clear();
                 adapter.notifyDataSetChanged();
 
@@ -334,32 +336,36 @@ public class HomeScreen extends AppCompatActivity {
                                     return;
                                 }
 
-                                Location l=null;
-                                LocationManager mLocationManager = (LocationManager)getApplicationContext().getSystemService(LOCATION_SERVICE);
-                                List<String> providers = mLocationManager.getProviders(true);
-                                Log.d("LOC", "onScanResult: "+providers);
+//                                Location l=null;
+//                                LocationManager mLocationManager = (LocationManager)getApplicationContext().getSystemService(LOCATION_SERVICE);
+//                                List<String> providers = mLocationManager.getProviders(true);
+//                                Log.d("LOC", "onScanResult: "+providers);
+//
+//                                Location bestLocation = null;
+//                                for (String provider : providers) {
+//                                    Log.d("Providers", "onScanResult: "+provider+bestLocation+l);
+//                                    if(ContextCompat.checkSelfPermission(HomeScreen.this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED) {
+//                                        l = mLocationManager.getLastKnownLocation(provider);
+//                                        Log.d("IF1", "onScanResult: ");
+//                                    }
+//                                    if (l == null) {
+//                                        Log.d("IF2", "onScanResult: ");
+//                                        continue;
+//
+//                                    }
+//                                    if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+//                                        bestLocation = l;
+//                                        Log.d("IF3", "onScanResult: "+bestLocation);
+//                                    }
+//                                    Log.d("Providers", "onScanResult: "+provider+bestLocation);
+//                                }
+//                                String loc=bestLocation.getLatitude()+","+bestLocation.getLongitude();
+//                                Log.d(loc, "onLocationChanged: hello");
+//                                gps_locations.update_loc(device.getName(),loc);
 
-                                Location bestLocation = null;
-                                for (String provider : providers) {
-                                    Log.d("Providers", "onScanResult: "+provider+bestLocation+l);
-                                    if(ContextCompat.checkSelfPermission(HomeScreen.this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED) {
-                                        l = mLocationManager.getLastKnownLocation(provider);
-                                        Log.d("IF1", "onScanResult: ");
-                                    }
-                                    if (l == null) {
-                                        Log.d("IF2", "onScanResult: ");
-                                        continue;
-
-                                    }
-                                    if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
-                                        bestLocation = l;
-                                        Log.d("IF3", "onScanResult: "+bestLocation);
-                                    }
-                                    Log.d("Providers", "onScanResult: "+provider+bestLocation);
-                                }
-                                String loc=bestLocation.getLatitude()+","+bestLocation.getLongitude();
-                                Log.d(loc, "onLocationChanged: hello");
-                                gps_locations.update_loc(device.getName(),loc);
+                                LocationListener locationListener = new MyLocationListener(HomeScreen.this,device.getName());
+                                locationManager.requestLocationUpdates(
+                                        LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
 
 //
 //                                Location location=locationManager.getLastKnownLocation("gps");
