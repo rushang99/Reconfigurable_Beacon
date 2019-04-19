@@ -52,7 +52,8 @@ public class Configuration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.config_beacon);
         config_options.add("Beacon Name");
-        config_options.add("Buzzer");
+        config_options.add("Buzzer on");
+        config_options.add("Buzzer off");
         config_options.add("Major");
         config_options.add("Minor");
         config_options.add("Power Level");
@@ -84,13 +85,6 @@ public class Configuration extends AppCompatActivity {
                         beacon_name= edittext.getText().toString();
                         beacon_name = "AT+NAME"+beacon_name;
                             connectToDevice(device);
-//                        final Handler handler = new Handler();
-//                        handler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                disconnectDevice();
-//                            }
-//                        }, Constants.connectionTime);
                     }
                 });
                 alert.show();
@@ -122,58 +116,71 @@ public class Configuration extends AppCompatActivity {
 //                    }, Constants.connectionTime);
 
                 }
-                else if(action.equals("Buzzer"))
+                else if(action.equals("Buzzer off"))
+                {
+                    beacon_name = "AT+PIO20";
+                    connectToDevice(device);
+//                    final Handler handler = new Handler();
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            disconnectDevice();
+//                        }
+//                    }, Constants.connectionTime);
+
+                }
+                else if(action.equals("Buzzer on"))
                 {
 
                     beacon_name = "AT+PIO21";
                     Log.d("VAL", beacon_name);
                     connectToDevice(device);
 
-                    new Timer().schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            // this code will be executed after 2 seconds
-                            beacon_name = "AT+PIO20";
-                            Log.d("VAL", beacon_name);
-                            connectToDevice(device);
-                            new Timer().schedule(new TimerTask() {
-                                @Override
-                                public void run() {
-                                    // this code will be executed after 2 seconds
-                                    beacon_name = "AT+PIO21";
-                                    Log.d("VAL", beacon_name);
-                                    connectToDevice(device);
-                                    new Timer().schedule(new TimerTask() {
-                                        @Override
-                                        public void run() {
-                                            // this code will be executed after 2 seconds
-                                            beacon_name = "AT+PIO20";
-                                            Log.d("VAL", beacon_name);
-                                            connectToDevice(device);
-                                            new Timer().schedule(new TimerTask() {
-                                                @Override
-                                                public void run() {
-                                                    // this code will be executed after 2 seconds
-                                                    beacon_name = "AT+PIO21";
-                                                    Log.d("VAL", beacon_name);
-                                                    connectToDevice(device);
-                                                    new Timer().schedule(new TimerTask() {
-                                                        @Override
-                                                        public void run() {
-                                                            // this code will be executed after 2 seconds
-                                                            beacon_name = "AT+PIO20";
-                                                            Log.d("VAL", beacon_name);
-                                                            connectToDevice(device);
-                                                        }
-                                                    }, 1000);
-                                                }
-                                            }, 1000);
-                                        }
-                                    }, 1000);
-                                }
-                            }, 1000);
-                        }
-                    }, 1700);
+//                    new Timer().schedule(new TimerTask() {
+//                        @Override
+//                        public void run() {
+//                            // this code will be executed after 2 seconds
+//                            beacon_name = "AT+PIO20";
+//                            Log.d("VAL", beacon_name);
+//                            connectToDevice(device);
+////                            new Timer().schedule(new TimerTask() {
+////                                @Override
+////                                public void run() {
+////                                    // this code will be executed after 2 seconds
+////                                    beacon_name = "AT+PIO21";
+////                                    Log.d("VAL", beacon_name);
+////                                    connectToDevice(device);
+////                                    new Timer().schedule(new TimerTask() {
+////                                        @Override
+////                                        public void run() {
+////                                            // this code will be executed after 2 seconds
+////                                            beacon_name = "AT+PIO20";
+////                                            Log.d("VAL", beacon_name);
+////                                            connectToDevice(device);
+////                                            new Timer().schedule(new TimerTask() {
+////                                                @Override
+////                                                public void run() {
+////                                                    // this code will be executed after 2 seconds
+////                                                    beacon_name = "AT+PIO21";
+////                                                    Log.d("VAL", beacon_name);
+////                                                    connectToDevice(device);
+////                                                    new Timer().schedule(new TimerTask() {
+////                                                        @Override
+////                                                        public void run() {
+////                                                            // this code will be executed after 2 seconds
+////                                                            beacon_name = "AT+PIO20";
+////                                                            Log.d("VAL", beacon_name);
+////                                                            connectToDevice(device);
+////                                                        }
+////                                                    }, 1000);
+////                                                }
+////                                            }, 1000);
+////                                        }
+////                                    }, 1000);
+////                                }
+////                            }, 1000);
+//                        }
+//                    }, 1500);
 
 
 
@@ -226,13 +233,6 @@ public class Configuration extends AppCompatActivity {
                             beacon_name = "AT+MINO0x"+Hex.toUpperCase();
                             Log.d("VAL",beacon_name);
                             connectToDevice(device);
-//                            final Handler handler = new Handler();
-//                            handler.postDelayed(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    disconnectDevice();
-//                                }
-//                            }, Constants.connectionTime);
                         }
                     });
                     alert.show();
@@ -381,13 +381,7 @@ public class Configuration extends AppCompatActivity {
                                 beacon_name=beacon_name+"F";
                             }
                             connectToDevice(device);
-//                            final Handler handler = new Handler();
-//                            handler.postDelayed(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    disconnectDevice();
-//                                }
-//                            }, Constants.connectionTime);
+                            dialog.dismiss();
 
 
                         }
@@ -445,15 +439,8 @@ public class Configuration extends AppCompatActivity {
                             {
                                 beacon_name=beacon_name+"3";
                             }
-
-//                            connectToDevice(device);
-//                            final Handler handler = new Handler();
-//                            handler.postDelayed(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    disconnectDevice();
-//                                }
-//                            }, Constants.connectionTime);
+                            connectToDevice(device);
+                            dialog.dismiss();;
 
 
                         }

@@ -31,14 +31,37 @@ public class Information extends AppCompatActivity {
         Cursor information=db.get_name(device_name);
         if(information.moveToFirst())
         {
-            info.add("Hey there! You have selected the beacon located at Assistech Lab IIT Delhi");
-            info.add(Integer.toString(information.getInt(1)));
-            info.add(Integer.toString(information.getInt(2)));
-            info.add(information.getString(3));
-            if(information.getString(0).equals("Beacon 3"))
-            {
+//            \
+
+            if(information.getString(0).equals("Beacon 0"))
+            {   info.add("Hey there! You have selected the beacon located at Assistech Lab IIT Delhi");
+                //info.add(Integer.toString(information.getInt(1)));
+                //info.add(Integer.toString(information.getInt(2)));
+                //info.add(information.getString(3));
                 info.add("ASSISTECH is an inter-disciplinary group of faculty, research staff and students, which is engaged in using modern technology for finding affordable solutions for the visually impaired. The focus is on mobility and education which we consider are fundamental to enable any person to live independently and with dignity. Apart from working on specific solutions based on needs identified by the users themselves, we hope to create an eco-system that helps sensitize and ignite a number of young minds towards real day-to-day challenges of the differently abled");
             }
+            if(information.getString(0).equals("Beacon 1"))
+            {   info.add("Hey there! You have selected the beacon located at the Toilet");
+                //info.add(Integer.toString(information.getInt(1)));
+                //info.add(Integer.toString(information.getInt(2)));
+                //info.add(information.getString(3));
+                info.add("The toilet is located on the backside of the Seminar Room");
+            }
+            if(information.getString(0).equals("Beacon 2"))
+            {   info.add("Hey there! You have selected the beacon located at the Lift");
+                //info.add(Integer.toString(information.getInt(1)));
+                //info.add(Integer.toString(information.getInt(2)));
+                //info.add(information.getString(3));
+                info.add("The lift is located between the Seminar Room and the Assistech Lab. It can be used to commute between any of the 4 floors of the SIT building");
+            }
+            if(information.getString(0).equals("Beacon 3"))
+            {   info.add("Hey there! You have selected the beacon located at the Seminar Room");
+                //info.add(Integer.toString(information.getInt(1)));
+                //info.add(Integer.toString(information.getInt(2)));
+                //info.add(information.getString(3));
+                info.add("The seminar room is the most sought after place for project demonstrations and presentations");
+            }
+
         }
 
 

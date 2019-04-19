@@ -11,6 +11,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -38,6 +39,7 @@ import com.neovisionaries.bluetooth.ble.advertising.ADStructure;
 import com.neovisionaries.bluetooth.ble.advertising.IBeacon;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -57,8 +59,9 @@ public class HomeScreen extends AppCompatActivity {
     private ListView listView;
     private Button scanButton;
     private Button gps_button;
-    private ArrayAdapter<String> adapter;
+    private BeaconAdapter adapter;
     private ArrayList<String> BT_devices;
+    ArrayList<ibeaconDevice>devices_list;
     private HashMap<String, BluetoothDevice> map;
     private LocationManager locationManager;
     private LocationListener listener;
@@ -73,6 +76,8 @@ public class HomeScreen extends AppCompatActivity {
         gps_locations = new DatabaseHelper2(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+
+        devices_list=new ArrayList<>();
 
 //        new Handler().postDelayed(new Runnable(){
 //            @Override
@@ -109,7 +114,7 @@ public class HomeScreen extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list);
         gps_button=(Button) findViewById(R.id.scan);
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, BT_devices);
+         adapter = new BeaconAdapter(this,R.layout.list_item,devices_list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -117,7 +122,7 @@ public class HomeScreen extends AppCompatActivity {
                                     int position, long id) {
                 BLEScanner.stopScan(mLeScanCallback);
 
-                final BluetoothDevice device = map.get(BT_devices.get(position));
+                final BluetoothDevice device = map.get(devices_list.get(position).name);
                 BT_devices.clear();
                 adapter.clear();
                 adapter.notifyDataSetChanged();
@@ -268,6 +273,7 @@ public class HomeScreen extends AppCompatActivity {
 
     private android.bluetooth.le.ScanCallback mLeScanCallback =
             new ScanCallback() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onScanResult(int callbackType, ScanResult result) {
                     List<ADStructure> structures =
@@ -301,6 +307,13 @@ public class HomeScreen extends AppCompatActivity {
                                 if(Uuid.substring(Uuid.length()-6).equals("059935"))
                                 {
                                     BT_devices.add(device.getName());
+                                    devices_list.add(new ibeaconDevice(iBeacon,device.getName(),result.getRssi()));
+                                    devices_list.sort(new Comparator<ibeaconDevice>() {
+                                        @Override
+                                        public int compare(ibeaconDevice ibeaconDevice, ibeaconDevice t1) {
+                                            return -(ibeaconDevice.power-t1.power);
+                                        }
+                                    });
                                     map.put(device.getName(), device);
                                     adapter.notifyDataSetChanged();
                                 }
@@ -324,18 +337,25 @@ public class HomeScreen extends AppCompatActivity {
                                 Location l=null;
                                 LocationManager mLocationManager = (LocationManager)getApplicationContext().getSystemService(LOCATION_SERVICE);
                                 List<String> providers = mLocationManager.getProviders(true);
+                                Log.d("LOC", "onScanResult: "+providers);
+
                                 Location bestLocation = null;
                                 for (String provider : providers) {
+                                    Log.d("Providers", "onScanResult: "+provider+bestLocation+l);
                                     if(ContextCompat.checkSelfPermission(HomeScreen.this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED) {
                                         l = mLocationManager.getLastKnownLocation(provider);
+                                        Log.d("IF1", "onScanResult: ");
                                     }
                                     if (l == null) {
+                                        Log.d("IF2", "onScanResult: ");
                                         continue;
+
                                     }
                                     if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
                                         bestLocation = l;
-                                        break;
+                                        Log.d("IF3", "onScanResult: "+bestLocation);
                                     }
+                                    Log.d("Providers", "onScanResult: "+provider+bestLocation);
                                 }
                                 String loc=bestLocation.getLatitude()+","+bestLocation.getLongitude();
                                 Log.d(loc, "onLocationChanged: hello");
