@@ -321,25 +321,25 @@ public class HomeScreen extends AppCompatActivity {
                                     return;
                                 }
 
-//                                Location l=null;
-//                                LocationManager mLocationManager = (LocationManager)getApplicationContext().getSystemService(LOCATION_SERVICE);
-//                                List<String> providers = mLocationManager.getProviders(true);
-//                                Location bestLocation = null;
-//                                for (String provider : providers) {
-//                                    if(ContextCompat.checkSelfPermission(HomeScreen.this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED) {
-//                                        l = mLocationManager.getLastKnownLocation(provider);
-//                                    }
-//                                    if (l == null) {
-//                                        continue;
-//                                    }
-//                                    if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
-//                                        bestLocation = l;
-//                                        break;
-//                                    }
-//                                }
-//                                String loc=bestLocation.getLatitude()+","+bestLocation.getLongitude();
-//                                Log.d(loc, "onLocationChanged: hello");
-//                                gps_locations.update_loc(device.getName(),loc);
+                                Location l=null;
+                                LocationManager mLocationManager = (LocationManager)getApplicationContext().getSystemService(LOCATION_SERVICE);
+                                List<String> providers = mLocationManager.getProviders(true);
+                                Location bestLocation = null;
+                                for (String provider : providers) {
+                                    if(ContextCompat.checkSelfPermission(HomeScreen.this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED) {
+                                        l = mLocationManager.getLastKnownLocation(provider);
+                                    }
+                                    if (l == null) {
+                                        continue;
+                                    }
+                                    if (bestLocation == null || l.getAccuracy() < bestLocation.getAccuracy()) {
+                                        bestLocation = l;
+                                        break;
+                                    }
+                                }
+                                String loc=bestLocation.getLatitude()+","+bestLocation.getLongitude();
+                                Log.d(loc, "onLocationChanged: hello");
+                                gps_locations.update_loc(device.getName(),loc);
 
 //
 //                                Location location=locationManager.getLastKnownLocation("gps");
